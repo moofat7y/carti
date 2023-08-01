@@ -1,10 +1,7 @@
-import { IconButton } from "@material-tailwind/react";
 import React, { useState } from "react";
-import { BsPencilSquare } from "react-icons/bs";
-import { LuTrash2 } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { deleteCustomer } from "../../app/features/Customers/customersSlice";
+import { deleteCustomer } from "../../app/features/customers/customersSlice";
 import profile from "/profile.png";
 const CustomerItem = ({ customer, setSelectedCustomer, selectedCustomer }) => {
   const [isLoading, setIsLoading] = useState(false);

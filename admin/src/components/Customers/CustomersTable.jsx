@@ -16,7 +16,7 @@ import { Pagination } from "../Pagination";
 import {
   deleteCustomer,
   getCustomers,
-} from "../../app/features/Customers/customersSlice";
+} from "../../app/features/customers/customersSlice";
 const CustomerTable = () => {
   const [selectedCustomer, setselectedCustomer] = useState([]);
   const { customers, from, to, current } = useSelector(
