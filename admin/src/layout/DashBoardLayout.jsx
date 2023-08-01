@@ -7,7 +7,7 @@ import { getCategories } from "../app/features/categories/categorySlice";
 import { getProducts } from "../app/features/product/productSlice";
 import { getOrders } from "../app/features/order/orderSlice";
 import { getInvoices } from "../app/features/invoices/invoiceSlice";
-import { getCustomers } from "../app/features/Customers/customersSlice";
+import { getCustomers } from "../app/features/customers/customersSlice";
 import { getUserSetting } from "../app/features/setting/settingSlice";
 import { getReports } from "../app/features/reports/reportSlice";
 
