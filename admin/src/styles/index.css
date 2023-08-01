@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MyAppleFont";
+  src: url("../assets/appleFont/ArbFONTS-ArabicUITextBold.otf");
+}
+
+a.active div[role="button"] {
+  background-color: #44337a;
+}
+body * {
+  font-family: "MyAppleFont", sans-serif !important;
+}
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+body *:focus-visible {
+  outline: none !important;
+}
