@@ -34,6 +34,8 @@ const CartList = () => {
       return {
         id: prod.product.id,
         quantity: prod.quantity,
+        size: prod.size ? prod.size : null,
+        color: prod.color ? prod.color : null,
       };
     });
     const orderData = {
@@ -96,6 +98,7 @@ const CartList = () => {
                     <ListItemPrefix className="ml-3">
                       <Checkbox
                         disabled={true}
+                        defaultChecked={false}
                         id="vertical-list-vue"
                         ripple={false}
                         className="hover:before:opacity-0"
@@ -118,8 +121,8 @@ const CartList = () => {
                       <Checkbox
                         id="vertical-list-svelte"
                         ripple={false}
-                        disabled={false}
-                        checked={true}
+                        disabled={true}
+                        defaultChecked={true}
                         className="hover:before:opacity-0"
                         containerProps={{
                           className: "p-0",

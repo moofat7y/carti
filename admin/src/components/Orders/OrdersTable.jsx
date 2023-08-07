@@ -31,7 +31,7 @@ const orderStatus = [
 
 const OrdersTable = () => {
   const [selectedOrder, setSelectedOrder] = useState([]);
-  const { orders, from, to, current } = useSelector((state) => state.order);
+  const { orders } = useSelector((state) => state.order);
   console.log(selectedOrder);
   const dispatch = useDispatch();
   const onUpdate = async (status) => {
@@ -176,12 +176,12 @@ const OrdersTable = () => {
             })}
           </tbody>
         </table>
-        <Pagination
+        {/* <Pagination
           from={from}
           to={to}
           current={current}
           action={(page) => dispatch(getOrders({ page: page }))}
-        />
+        /> */}
       </div>
     </>
   );

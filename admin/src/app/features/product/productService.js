@@ -14,7 +14,11 @@ const createProduct = async (data) => {
 
 const updateProduct = async (id, data) => {
   const response = await api.post(`/products/${id}`, data);
+  return response.data;
+};
 
+const updateProductImage = async (data) => {
+  const response = await api.post(`/productimage`, data);
   return response.data;
 };
 
@@ -28,6 +32,7 @@ const productServices = {
   createProduct,
   updateProduct,
   deleteProduct,
+  updateProductImage,
 };
 
 export default productServices;

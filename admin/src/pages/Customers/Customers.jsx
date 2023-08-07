@@ -26,7 +26,7 @@ const Customers = () => {
               <span className="text-xs text-gray-500">(4 مجموعات)</span>
             </div>
             {/* Num Client */}
-            <CustomersFilter />
+            {/* <CustomersFilter /> */}
           </div>
 
           <div className="mt-4 flex justify-between items-center mb-5">

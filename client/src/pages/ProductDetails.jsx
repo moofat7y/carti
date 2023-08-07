@@ -3,7 +3,6 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { FaOpencart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { product } from "../utils/helpers";
 import Ratings from "../components/productDetails/Ratings";
 import api from "../utils/api";
 import ProdDetailsLoading from "../components/productDetails/loading/ProdDetailsLoading";
@@ -11,7 +10,7 @@ import { addToCart } from "../app/features/cart/cartSlice";
 const ImageDisplay = ({ image }) => {
   return (
     <img
-      src={"https://cartyi.com/storage/images/products/" + image}
+      src={"https://api.cartyi.com/storage/images/products/" + image}
       alt={image}
       className="h-full w-full rounded-md object-contain"
     />
@@ -21,7 +20,7 @@ const ImageDisplay = ({ image }) => {
 const ImagePreview = ({ image, isSelected, onClick }) => {
   return (
     <img
-      src={"https://cartyi.com/storage/images/products/" + image}
+      src={"https://api.cartyi.com/storage/images/products/" + image}
       alt={image}
       className={`h-16 w-16 rounded-md object-contain m-1 duration-200 ${
         isSelected
@@ -36,15 +35,15 @@ const ImagePreview = ({ image, isSelected, onClick }) => {
 const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState({ color: null, index: 0 });
   const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsloading] = useState(false);
   const [prodDetails, setProdDetails] = useState(null);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = `Product: ${product.name}`;
-  }, [product.name]);
+    document.title = `Product: ${prodDetails?.name}`;
+  }, [id]);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -209,6 +208,10 @@ const ProductDetails = () => {
                   السعر: {prodDetails?.price} ج.م
                 </p>
               </div>
+
+              <p className="e-600 mt-2 whitespace-nowrap ps-2">
+                الكميه المتاحه: {prodDetails?.qty}
+              </p>
               {/* <Ratings
                 stars={prodDetails?.totalrating}
                 reviews={prodDetails?.ratings}
@@ -216,13 +219,13 @@ const ProductDetails = () => {
               <form className="mt-4">
                 {/* Colors */}
                 <div>
-                  {prodDetails?.color_size && (
+                  {prodDetails?.color_size.length > 0 && (
                     <>
                       <h3 className="text-sm font-medium text-purple-900">
                         الالوان
                       </h3>
                       <div className="colors mt-4 flex gap-4">
-                        {prodDetails.color_size.map((color, index) => (
+                        {prodDetails?.color_size?.map((color, index) => (
                           <div
                             key={index}
                             style={{
@@ -249,7 +252,7 @@ const ProductDetails = () => {
                 </div>
 
                 <div className=" mt-4">
-                  {prodDetails?.color_size[selectedColor.index].size.length >
+                  {prodDetails?.color_size[selectedColor?.index]?.size?.length >
                     0 && (
                     <>
                       <h3>الاحجام</h3>

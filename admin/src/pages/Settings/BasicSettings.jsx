@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { BiPlanet } from "react-icons/bi";
 import { updateUserSetting } from "../../app/features/setting/settingSlice";
+import { useNavigate } from "react-router-dom";
 
 const BasicSetting = () => {
   const { settings } = useSelector((state) => state.setting);
@@ -31,6 +32,7 @@ const BasicSetting = () => {
   const [favIcon, setFavIcon] = useState(false);
   const [logo, setLogo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onGetLocation = () => {
     if (navigator.geolocation) {
@@ -69,7 +71,7 @@ const BasicSetting = () => {
     formData.append("_method", "PUT");
     console.log(data);
     setIsLoading(true);
-    await dispatch(updateUserSetting({ data: formData }));
+    await dispatch(updateUserSetting({ data: formData, navigate }));
     setIsLoading(false);
   };
 
@@ -114,7 +116,7 @@ const BasicSetting = () => {
                   ) : settings?.logo ? (
                     <img
                       src={
-                        "https://cartyi.com/storage/images/vendors/logos/" +
+                        "https://api.cartyi.com/storage/images/vendors/logos/" +
                         settings.logo
                       }
                       alt="bag"
@@ -257,16 +259,16 @@ const BasicSetting = () => {
                             <img
                               src={URL.createObjectURL(favIcon)}
                               alt="bag"
-                              className="max-h-full rounded-md max-w-full"
+                              className="max-h-full rounded-md h-full w-full object-contain"
                             />
                           ) : settings?.favicon ? (
                             <img
                               src={
-                                "https://cartyi.com/storage/images/vendors/favicons/" +
+                                "https://api.cartyi.com/storage/images/vendors/favicons/" +
                                 settings.favicon
                               }
                               alt="bag"
-                              className="max-h-full rounded-md max-w-full"
+                              className="max-h-full rounded-md h-full w-full object-contain"
                             />
                           ) : (
                             <svg
@@ -285,12 +287,6 @@ const BasicSetting = () => {
                               />
                             </svg>
                           )}
-                          <button
-                            onClick={() => setFavIcon(null)}
-                            className="remove-pic absolute -top-2 -right-2 text-red-500 text-xl"
-                          >
-                            <AiFillCloseCircle />
-                          </button>
                         </div>
                       </div>
                       <p className="text-sm text-gray-600">

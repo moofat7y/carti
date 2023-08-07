@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userService from "./userService";
-import { notifySuccess } from "../../../utils/notifies";
+import { notifyError, notifySuccess } from "../../../utils/notifies";
 import { toast } from "react-hot-toast";
 import avatar from "/profile.png";
 import { createCart, resetCart } from "../cart/cartSlice";
+import { errHandler } from "../../../utils/helpers";
 const userToken = JSON.parse(window.localStorage.getItem("token"));
 const user = JSON.parse(window.localStorage.getItem("user"));
 
@@ -66,6 +67,25 @@ export const verifyOtb = createAsyncThunk(
   }
 );
 
+export const login = createAsyncThunk(
+  "/user/login",
+  async ({ data, navigate }, thunkAPI) => {
+    try {
+      const res = await userService.login(data);
+      notifySuccess(res.message);
+      window.localStorage.setItem("token", JSON.stringify(res.token));
+      window.localStorage.setItem("user", JSON.stringify(res.data));
+      navigate("/");
+      return res;
+    } catch (err) {
+      console.log(err);
+      err = errHandler(err);
+      notifyError(err);
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
 export const logOut = createAsyncThunk(
   "/user/logout",
   async ({ navigate }, thunkAPI) => {
@@ -107,6 +127,20 @@ const userSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.payload.message;
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.data;
+        state.token = action.payload.token;
+      })
+      .addCase(login.rejected, (state, action) => {
+        console.log(action.payload);
+        state.isLoading = false;
+
+        // console.log(action.payload);
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = null;

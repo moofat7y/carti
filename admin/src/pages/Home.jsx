@@ -10,6 +10,8 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import HomeClient from "../components/home/HomeClient";
 import HomeOrder from "../components/home/HomeOrder";
 import { useSelector } from "react-redux";
+import Statics from "../components/home/Statics";
+import Chart from "../components/home/Chart";
 const Home = () => {
   const { reports } = useSelector((state) => state.report);
   return (
@@ -42,7 +44,7 @@ const Home = () => {
               {/* Charts */}
               <div className="charts border rounded-md overflow-hidden flex items-center justify-center mb-10">
                 {/* Reports */}
-                {/* <Report /> */}
+                <Statics />
                 {/* Chart */}
                 {/* <Chart /> */}
               </div>

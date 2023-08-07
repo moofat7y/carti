@@ -17,8 +17,16 @@ export const getOrders = createAsyncThunk(
   async ({ page }, thunkApi) => {
     try {
       const res = await orderServices.getOrders(page);
-      const newOrders = res.map((order) => order[0]);
-      return newOrders;
+      // console.log(res);
+
+      // if (res.length > 0) {
+      //   const newOrders = res?.map((order) => order[0]);
+      //   return newOrders;
+      // } else {
+      //   return [];
+      // }
+
+      return res;
     } catch (error) {
       console.log(error);
     }

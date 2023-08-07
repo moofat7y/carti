@@ -29,7 +29,10 @@ const CartItem = ({ product, size, color, quantity }) => {
     <div className="flex  items-center bg-white  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full py-2">
       <img
         className="object-cover rounded-t-lg h-20 w-20 md:rounded-none md:rounded-l-lg"
-        src={product.images[0].secure_url}
+        src={
+          "https://api.cartyi.com/storage/images/products/" +
+          product.product_images[0].image
+        }
         alt=""
       />
       <div className="flex flex-col justify-between leading-normal mr-2">

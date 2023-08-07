@@ -10,7 +10,10 @@ import { IoCloseOutline } from "react-icons/io5";
 import { GoMoveToStart } from "react-icons/go";
 import { navigations } from "../utils/helpers";
 import { Link, NavLink } from "react-router-dom";
+import cartiLogo from "/logo.ico";
+import { useSelector } from "react-redux";
 const SideBar = () => {
+  const { settings } = useSelector((state) => state.setting);
   const [open, setOpen] = React.useState(0);
   const [openNav, setOpenNav] = useState(
     window.innerWidth <= 719 ? false : true
@@ -31,9 +34,17 @@ const SideBar = () => {
       }`}
     >
       <div className="mb-2 relative p-4 flex items-center">
-        <Typography variant="h5" color="white">
-          Sidebar
-        </Typography>
+        <Link to="/">
+          <img
+            src={
+              settings?.logo
+                ? "https://api.cartyi.com/storage/images/vendors/logos/" +
+                  settings?.logo
+                : cartiLogo
+            }
+            className="w-[45px] h-[45px] object-contain"
+          />
+        </Link>
         <IoCloseOutline
           onClick={() => setOpenNav(false)}
           className="text-xl md:hidden text-white mr-auto cursor-pointer"

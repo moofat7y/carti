@@ -5,6 +5,9 @@
 a.active div[role="button"] {
   background-color: #44337a;
 }
+body *:focus-visible {
+  outline: none !important;
+}
 
 .auth input[type="number"] {
   -moz-appearance: textfield;

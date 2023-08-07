@@ -108,18 +108,20 @@ const cartSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         console.log(action.payload);
-        const products = action.payload.map((prod) => {
-          return {
-            product: prod.product,
-            quantity: prod.quantity,
-            price: prod.product.price,
-          };
-        });
-        const totalCart = action.payload
-          .map((prod) => prod.product.price * prod.quantity)
-          .reduce((a, b) => a + b);
-        state.cart = { products, totalCart };
-        window.localStorage.setItem("cart", JSON.stringify(state.cart));
+        if (action.payload?.length > 0) {
+          const products = action.payload?.map((prod) => {
+            return {
+              product: prod.product,
+              quantity: prod.quantity,
+              price: prod.product.price,
+            };
+          });
+          const totalCart = action.payload
+            ?.map((prod) => prod.product.price * prod.quantity)
+            .reduce((a, b) => a + b);
+          state.cart = { products, totalCart };
+          window.localStorage.setItem("cart", JSON.stringify(state.cart));
+        }
       })
       .addCase(getCart.rejected, (state, action) => {
         state.isLoading = false;

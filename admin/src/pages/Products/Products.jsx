@@ -22,11 +22,13 @@ import ProdFilter from "../../components/Products/ProdFilter";
 import { BiPlus } from "react-icons/bi";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import ProductTable from "../../components/Products/ProductTable";
+import { useDispatch } from "react-redux";
+import { addNewProduct } from "../../app/features/product/productSlice";
 // ---------------------
 
 const links = [{ text: "المنتجات", href: "/products" }];
 const Products = () => {
-  console.log("red");
+  const dispatch = useDispatch();
   return (
     <>
       <div className="products-list">
@@ -39,15 +41,14 @@ const Products = () => {
 
           {/* End Header */}
           <div className="filter flex justify-between items-center mb-5">
-            <Link to="/products/add-product">
-              <Button
-                className="px-2 md:px-6 flex items-center gap-2 cursor-pointer"
-                color="purple"
-              >
-                <BiPlus />
-                اضافة منتج جديد
-              </Button>
-            </Link>
+            <Button
+              onClick={() => dispatch(addNewProduct())}
+              className="px-2 md:px-6 flex items-center gap-2 cursor-pointer"
+              color="purple"
+            >
+              <BiPlus />
+              اضافة منتج جديد
+            </Button>
             <div className="btn">
               <div className="flex gap-1 text-sm font-medium text-gray-500">
                 <ProdFilter />

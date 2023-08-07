@@ -2,32 +2,25 @@ import React, { useState } from "react";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import api from "../../utils/api";
 import { notifyError, notifySuccess } from "../../utils/notifies";
+import { login } from "../../app/features/user/userSlice";
 
 const SignIn = () => {
+  const { isLoading } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [passShow, setPassShow] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    try {
-      setIsLoading(true);
-      const response = await api.post("/login", data);
-      window.localStorage.setItem("token", JSON.stringify(response.data.token));
-      setIsLoading(false);
-      navigate("/auth/verify");
-      notifySuccess("لقد تم ارسال رمز التاكيد الى البريد الالكتروني");
-    } catch (error) {
-      setIsLoading(false);
-      notifyError(error.response.data.message);
-    }
+    await dispatch(login({ data, navigate }));
   };
 
   const togglePasswordVisibility = () => {

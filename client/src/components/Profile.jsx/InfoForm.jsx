@@ -1,7 +1,9 @@
 import { Avatar, Button, Input } from "@material-tailwind/react";
 import React from "react";
-
+import { useSelector } from "react-redux";
+import userImg from "/img/prodDefault.webp";
 const InfoForm = () => {
+  const { user } = useSelector((state) => state.user);
   return (
     <>
       <h3 className="font-semibold text-2xl text-center mb-10">
@@ -9,11 +11,18 @@ const InfoForm = () => {
       </h3>
       <div className="flex flex-col items-center mb-8">
         <label htmlFor="avatar">
-          <Avatar
-            className="mb-4"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-            alt="avatar"
-          />
+          {user.image ? (
+            <Avatar
+              className="mb-4"
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+              alt="avatar"
+            />
+          ) : (
+            <img
+              className="w-10 h-10 object-contain rounded-full"
+              src={userImg}
+            />
+          )}
         </label>
         <input
           id="avatar"
@@ -21,13 +30,20 @@ const InfoForm = () => {
           type="file"
           onChange={(e) => console.log(e.target.files)}
         />
-        <p>Mohamed Fathy</p>
-        <p>201210192476+</p>
+        <p>{user?.name}</p>
+        <p>{user?.phone}</p>
       </div>
       <form>
         <div className="grid gap-6 mb-6 md:grid-cols-2">
           <div>
-            <Input color="purple" variant="standard" label="اسم المستخدم" />
+            <Input
+              value={user?.name}
+              disabled={true}
+              color="purple"
+              variant="standard"
+              label="اسم المستخدم"
+              className="text-center"
+            />
           </div>
           <div>
             <Input
@@ -35,6 +51,9 @@ const InfoForm = () => {
               type="email"
               variant="standard"
               label="البريد الالكتروني"
+              className="text-center"
+              value={user?.email}
+              disabled={true}
             />
           </div>
           <div>
@@ -43,59 +62,12 @@ const InfoForm = () => {
               type="tel"
               variant="standard"
               label="رقم الهاتف"
-            />
-          </div>
-          <div>
-            <label
-              for="phone"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Phone number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
-              placeholder="123-45-678"
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="website"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Website URL
-            </label>
-            <input
-              type="url"
-              id="website"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
-              placeholder="flowbite.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="visitors"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Unique visitors (per month)
-            </label>
-            <input
-              type="number"
-              id="visitors"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
-              placeholder=""
-              required
+              className="text-center"
+              value={user?.phone}
+              disabled={true}
             />
           </div>
         </div>
-
-        <Button color="purple" type="submit" className=" w-full sm:w-auto ">
-          تحديث
-        </Button>
       </form>
     </>
   );

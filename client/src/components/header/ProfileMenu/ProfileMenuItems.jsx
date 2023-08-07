@@ -24,6 +24,7 @@ function ProfileMenuItems({ items, onClose }) {
         if (isLastItem) {
           return (
             <MenuItem
+              key={label}
               onClick={() => onLogout()}
               className={`flex items-center gap-2 rounded 
                 isLastItem

@@ -12,14 +12,13 @@ const Modal = ({ children, open, setOpen }) => {
     }
   };
   if (!open) return null;
-
   return ReactDOM.createPortal(
     <div
       onClick={(e) => handleBgClick(e)}
       className="fixed top-0 left-0 h-screen w-full pointer-events-auto z-[9995] bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center"
     >
-      <div ref={modalRef} className="relative w-full max-w-md max-h-full">
-        <Card>{children}</Card>
+      <div ref={modalRef} className="relative w-full max-w-md max-h-full ">
+        <Card className="rounded overflow-hidden">{children}</Card>
       </div>
     </div>,
     document.getElementById("models")

@@ -2,7 +2,7 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_REACT_API_URL;
 
 const api = axios.create({
-  baseURL: "https://cartyi.com/api/v1/",
+  baseURL: "https://api.cartyi.com/api/v1/",
 });
 api.interceptors.request.use(
   (req) => {
@@ -15,4 +15,19 @@ api.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+
+api.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  async (err) => {
+    const status = err.response ? err.response.status : null;
+    if (status === 401 && err?.response?.data?.message === "Unauthenticated.") {
+      window.localStorage.clear();
+      window.location.reload();
+    }
+    throw err;
+  }
+);
+
 export default api;

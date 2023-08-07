@@ -34,7 +34,7 @@ const Search = () => {
         <MenuHandler>
           <Button
             color="white"
-            className="rounded-none px-3 md:px-6  md:min-w-[120px] hover:shadow-none shadow-none"
+            className="rounded-none px-3 md:px-6  md:min-w-[120px] w-[120px] hover:shadow-none shadow-none"
           >
             {searchFilters[filter].text}
           </Button>

@@ -10,12 +10,13 @@ import { getInvoices } from "../app/features/invoices/invoiceSlice";
 import { getCustomers } from "../app/features/customers/customersSlice";
 import { getUserSetting } from "../app/features/setting/settingSlice";
 import { getReports } from "../app/features/reports/reportSlice";
+import AddReport from "../components/Reports/AddReport";
 
 export default function DashBoardLayout() {
-  const { user } = useSelector((state) => state.user);
+  const { user, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (user) {
+    if (token) {
       dispatch(getCategories({ page: 1 }));
       dispatch(getProducts({ page: 1 }));
       dispatch(getOrders({ page: 1 }));
@@ -31,6 +32,9 @@ export default function DashBoardLayout() {
       <div className="main min-h-screen w-full md:w-[75%] xl:w-[85%] pb-4">
         <Header />
         <Outlet />
+      </div>
+      <div className="fixed left-5 bottom-5">
+        <AddReport />
       </div>
     </div>
   );

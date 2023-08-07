@@ -26,9 +26,9 @@ import PrintOrder from "./pages/Orders/PrintOrder";
 import Complaints from "./pages/Reports/Reports";
 
 function App() {
-  const { user } = useSelector((state) => state.user);
+  const { user, token } = useSelector((state) => state.user);
   const ProtectedAdmin = ({ children }) => {
-    if (user) {
+    if (token) {
       return children;
     }
     return <Navigate to="/auth/signin" />;

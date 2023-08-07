@@ -11,7 +11,11 @@ const logOut = async () => {
 
   return response.data;
 };
+const login = async (data) => {
+  const response = await api.post("/login", data);
+  return response.data;
+};
 
-const userService = { verifyOtb, logOut };
+const userService = { verifyOtb, logOut, login };
 
 export default userService;

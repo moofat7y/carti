@@ -175,45 +175,6 @@ export const ordersData = [
   },
 ];
 
-export const orders = [
-  {
-    id: 1,
-    avatar: avatar,
-    name: "محمد جمعه",
-    text: "مستعرض كمبوتر",
-    status: "تم التوصيل",
-    price: 220,
-    date: "منذ ساعتين",
-  },
-  {
-    id: 2,
-    avatar: avatar,
-    name: "محمد فتحي",
-    text: "مستعرض كمبوتر",
-    status: "تم التوصيل",
-    price: 220,
-    date: "منذ ساعتين",
-  },
-  {
-    id: 3,
-    avatar: avatar,
-    name: "احمد مجدي",
-    text: "مستعرض كمبوتر",
-    status: "تم التوصيل",
-    price: 220,
-    date: "منذ ساعتين",
-  },
-  {
-    id: 4,
-    avatar: avatar,
-    name: "محمد جمعه",
-    text: "مستعرض كمبوتر",
-    status: "تم التوصيل",
-    price: 220,
-    date: "منذ ساعتين",
-  },
-];
-
 export const clientsFilters = [
   {
     id: 1,
@@ -246,15 +207,6 @@ export const clientsFilters = [
   },
 ];
 
-export const customers = [
-  { id: 1, name: "محمد علاء", address: "دمياط", avatar: avatar },
-  { id: 2, name: "محمد علاء", address: "دمياط", avatar: avatar },
-  { id: 3, name: "محمد علاء", address: "دمياط", avatar: avatar },
-  { id: 4, name: "محمد علاء", address: "دمياط", avatar: avatar },
-  { id: 5, name: "محمد علاء", address: "دمياط", avatar: avatar },
-  { id: 6, name: "محمد علاء", address: "دمياط", avatar: avatar },
-];
-
 export const orderStatusColors = {
   pending: "bg-yellow-400",
   verified: "bg-blue-500",
@@ -266,4 +218,17 @@ export const orderStatusColors = {
 export const reportStatusColors = {
   read: "bg-green-500",
   pending: "bg-yellow-500",
+};
+
+export const errHandler = (err) => {
+  console.log(err);
+  if (Object.values(err.response?.data?.data).length > 0) {
+    return Object.values(err.response.data.data).join(",");
+  }
+  if (err?.response?.data?.message) {
+    return err.response.data.message;
+  }
+  if (Object.values(err.response.data).length > 0) {
+    return Object.values(err.response.data).join(",");
+  }
 };

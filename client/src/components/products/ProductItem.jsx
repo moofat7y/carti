@@ -18,7 +18,7 @@ export default function ProductItem({ product }) {
           {product.product_image.length > 0 ? (
             <img
               src={
-                "https://cartyi.com/storage/images/products/" +
+                "https://api.cartyi.com/storage/images/products/" +
                 product.product_image[0].image
               }
               loading="lazy"

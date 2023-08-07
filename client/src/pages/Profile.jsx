@@ -8,9 +8,9 @@ const Profile = () => {
       <div className="py-8">
         <InfoForm />
       </div>
-      <div className="py-8">
+      {/* <div className="py-8">
         <ChangePassword />
-      </div>
+      </div> */}
     </div>
   );
 };

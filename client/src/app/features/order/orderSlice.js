@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import orderService from "./orderService";
-import { notifySuccess } from "../../../utils/notifies";
+import { notifyError, notifySuccess } from "../../../utils/notifies";
 import { resetCart } from "../cart/cartSlice";
+import { errHandler } from "../../../utils/helpers";
 
 const initialState = {
   isLoading: false,
@@ -30,7 +31,9 @@ export const createOrder = createAsyncThunk(
       notifySuccess(response.message);
       return response.data;
     } catch (error) {
-      console.log(error);
+      error = errHandler(error);
+      notifyError(error);
+      thunkApi.rejectWithValue(error);
     }
   }
 );

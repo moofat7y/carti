@@ -16,7 +16,7 @@ export default function StoreNavBar() {
   const [openNav, setOpenNav] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-
+  const { settings } = useSelector((state) => state.setting);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -47,10 +47,14 @@ export default function StoreNavBar() {
   return (
     <Navbar className="mx-auto shadow-none z-10 fixed max-w-full min-w-full w-full px-4 py-3 rounded-none  before:absolute before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:from-0% before:via-purple-500 before:purple-50% before:to-transparent before:to-100% before:top-[100%]">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Link path="/store" className="ml-4 cursor-pointer py-1.5 font-medium">
+        <Link to="/" className="ml-4 cursor-pointer py-1.5 font-medium">
           <img
-            className="w-[30px] md:w-[40px] h-[30px] md:h-[40px]"
-            src="/logo.ico"
+            className="w-[30px] md:w-[40px] h-[30px] md:h-[40px] object-contain"
+            src={
+              settings?.logo
+                ? `https://api.cartyi.com/storage/images/vendors/logos/${settings.logo}`
+                : "/logo.ico"
+            }
           />
         </Link>
         <div className="hidden lg:block">{navList}</div>

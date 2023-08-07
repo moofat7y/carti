@@ -6,10 +6,10 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const AuthLayout = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user, token } = useSelector((state) => state.user);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate("/");
     }
   }, []);

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { notifySuccess } from "../../../utils/notifies";
 import categoryService from "./categoyService";
+import { errHandler } from "../../../utils/helpers";
 
 const initialState = {
   isLoading: false,
@@ -31,7 +32,8 @@ export const createCategory = createAsyncThunk(
       notifySuccess(" تم اضافة الصنف بنجاح");
       return res;
     } catch (error) {
-      console.log(error);
+      error = errHandler(error);
+      return thunkApi.rejectWithValue(error);
     }
   }
 );

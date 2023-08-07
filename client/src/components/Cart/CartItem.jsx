@@ -26,15 +26,14 @@ const CartItem = ({ product }) => {
     }, 200);
     return () => clearTimeout(timeId);
   }, [prodQuantity]);
-  console.log(product);
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-      <td className="w-28 p-4">
+      <td className="w-24 h-24 p-4">
         {product?.product?.product_image?.length > 0 ? (
           <img
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             src={
-              "https://cartyi.com/storage/images/products/" +
+              "https://api.cartyi.com/storage/images/products/" +
               product.product.product_image[0].image
             }
             alt="Apple Watch"
@@ -56,7 +55,14 @@ const CartItem = ({ product }) => {
         {product.product.name}
       </td>
       <td className="px-6 py-2 font-semibold text-gray-900 dark:text-white">
-        {product.color ? product.color : "_"}
+        {product.color ? (
+          <span
+            className="inline-block p-3 rounded-full"
+            style={{ backgroundColor: product?.color }}
+          ></span>
+        ) : (
+          "_"
+        )}
       </td>
       <td className="px-6 py-2 font-semibold text-gray-900 dark:text-white">
         {product.size ? product.size : "_"}

@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../app/features/product/productSlice";
 import { getOrders } from "../app/features/order/orderSlice";
 import { getCart } from "../app/features/cart/cartSlice";
+import { getUserSetting } from "../app/features/setting/settingSlice";
 const StoreLayout = () => {
-  const { token } = useSelector((state) => state.user);
+  const { token, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProducts({ page: 1 }));
     if (token) {
+      dispatch(getProducts({ page: 1 }));
+      dispatch(getUserSetting({ id: user.id }));
       dispatch(getOrders());
       dispatch(getCart());
     }

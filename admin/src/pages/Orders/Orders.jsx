@@ -65,7 +65,7 @@ const Orders = () => {
             </div>
           </div>
           {/* Num Client */}
-          <OrdersFilter />
+          {/* <OrdersFilter /> */}
         </div>
         <OrdersTable />
       </div>
