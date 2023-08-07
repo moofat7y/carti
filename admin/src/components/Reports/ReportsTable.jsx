@@ -82,10 +82,6 @@ const ReportsTable = () => {
                   </MenuList>
                 </Menu>
               </MenuItem>
-              <MenuItem className="flex items-center py-3 gap-2">
-                <AiOutlineDelete />
-                حذف الشكوي
-              </MenuItem>
             </MenuList>
           </Menu>
         </div>

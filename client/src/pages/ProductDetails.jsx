@@ -49,7 +49,7 @@ const ProductDetails = () => {
     const getProduct = async () => {
       try {
         setIsloading(true);
-        const res = await api.get(`products/${id}`);
+        const res = await api.get(`show-product/${id}`);
 
         const productData = {
           ...res.data,

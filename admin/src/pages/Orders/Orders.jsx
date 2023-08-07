@@ -31,16 +31,7 @@ const Orders = () => {
         {/* Group client */}
         <div className="group-client mb-6">
           <div className=" flex justify-between items-center mb-5">
-            <Link to="/products/add-product">
-              <Button
-                className="px-2 md:px-6 flex items-center gap-2 cursor-pointer"
-                color="purple"
-              >
-                <BiPlus />
-                اضافة منتج جديد
-              </Button>
-            </Link>
-            <div className="btn">
+            <div className="btn ms-auto">
               <div className="flex gap-1 text-sm font-medium text-gray-500">
                 <ProdFilter />
                 <Menu placement="bottom-end">

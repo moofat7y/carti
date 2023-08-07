@@ -25,7 +25,7 @@ api.interceptors.response.use(
     const status = err.response ? err.response.status : null;
     if (status === 401 && err?.response?.data?.message === "Unauthenticated.") {
       window.localStorage.clear();
-      window.location.reload();
+      window.location.replace("/");
     }
     throw err;
   }

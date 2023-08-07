@@ -11,8 +11,8 @@ const StoreLayout = () => {
   const { token, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getProducts());
     if (token) {
-      dispatch(getProducts({ page: 1 }));
       dispatch(getUserSetting({ id: user.id }));
       dispatch(getOrders());
       dispatch(getCart());

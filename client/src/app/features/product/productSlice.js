@@ -12,18 +12,15 @@ const initialState = {
   message: "",
 };
 
-export const getProducts = createAsyncThunk(
-  "products/",
-  async ({ page }, thunkAPI) => {
-    try {
-      const response = await productServices.getProducts(page);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error);
-    }
+export const getProducts = createAsyncThunk("products/", async (thunkAPI) => {
+  try {
+    const response = await productServices.getProducts();
+    return response;
+  } catch (error) {
+    console.log(error);
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 const productSlice = createSlice({
   initialState,

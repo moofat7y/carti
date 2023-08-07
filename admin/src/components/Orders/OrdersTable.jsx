@@ -86,7 +86,7 @@ const OrdersTable = () => {
                   </MenuList>
                 </Menu>
               </MenuItem>
-              <MenuItem className="flex items-center py-3 gap-2">
+              {/* <MenuItem className="flex items-center py-3 gap-2">
                 <FiUsers />
                 اسناد الى الموظفين
               </MenuItem>
@@ -109,7 +109,7 @@ const OrdersTable = () => {
               <MenuItem className="flex items-center py-3 gap-2">
                 <TiExportOutline />
                 تصدير الطلبات
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem className="flex items-center py-3 gap-2">
                 <AiOutlineDelete />
                 حذف الطلب

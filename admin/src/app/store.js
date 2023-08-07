@@ -7,7 +7,8 @@ import orderRed from "./features/order/orderSlice";
 import invoiceRed from "./features/invoices/invoiceSlice";
 import settingRed from "./features/setting/settingSlice";
 import reportRed from "./features/reports/reportSlice";
-import customersSlice from "./features/customers/customersSlice";
+import customersRed from "./features/customers/customersSlice";
+import statRed from "./features/statistics/statSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,8 +17,9 @@ export const store = configureStore({
     product: productRed,
     order: orderRed,
     invoice: invoiceRed,
-    customer: customersSlice,
+    customer: customersRed,
     setting: settingRed,
     report: reportRed,
+    statistic: statRed,
   },
 });

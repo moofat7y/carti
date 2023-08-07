@@ -59,7 +59,7 @@ const customerSlice = createSlice({
         state.customers = action.payload.data;
         state.from = action.payload.from;
         state.to = action.payload.last_page;
-        state.current = action.payload.current_page;
+        state.current = action?.payload?.current_page || 1;
       })
       .addCase(getCustomers.rejected, (state, action) => {
         state.isLoading = false;

@@ -11,12 +11,14 @@ import { getCustomers } from "../app/features/customers/customersSlice";
 import { getUserSetting } from "../app/features/setting/settingSlice";
 import { getReports } from "../app/features/reports/reportSlice";
 import AddReport from "../components/Reports/AddReport";
+import { getStatistics } from "../app/features/statistics/statSlice";
 
 export default function DashBoardLayout() {
   const { user, token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
     if (token) {
+      dispatch(getStatistics());
       dispatch(getCategories({ page: 1 }));
       dispatch(getProducts({ page: 1 }));
       dispatch(getOrders({ page: 1 }));

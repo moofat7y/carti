@@ -22,7 +22,6 @@ const InvoiceItem = ({ invoice, setSelectedInvoice, selectedInvoice }) => {
             #{invoice.invoice_number}
           </Link>
         </td>
-        <td></td>
         <td className="px-6 min-w-[150px] py-4">{invoice.tax} %</td>
         <td className="px-6  py-4">{invoice.subtotal} ج.م</td>
         <td className="px-6  py-4">{invoice.total} ج.م</td>

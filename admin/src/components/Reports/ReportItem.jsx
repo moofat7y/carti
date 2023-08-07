@@ -11,6 +11,7 @@ import {
 
 const ReportItem = ({ report, selectedReport, setSelectedReport }) => {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(report);
   return (
     <>
       <Modal open={isOpen} setOpen={setIsOpen}>
@@ -41,16 +42,18 @@ const ReportItem = ({ report, selectedReport, setSelectedReport }) => {
             <span className="">{report?.description}</span>
           </div>
           <hr className="my-3" />
-          <div className="pic font-medium text-gray-500">
-            <p className="inline-block ml-3">صورة الشكوى :</p>
-            <Link
-              to="#"
-              target="_blank"
-              className="border px-3 py-1 rounded-md bg-purple-400 hover:bg-purple-600 duration-300 text-white"
-            >
-              عرض
-            </Link>
-          </div>
+          {report.image ? (
+            <div className="pic font-medium text-gray-500">
+              <p className="inline-block ml-3">صورة الشكوى :</p>
+              <Link
+                to={`https://api.cartyi.com/storage/images/complaints/${report.image}`}
+                target="_blank"
+                className="border px-3 py-1 rounded-md bg-purple-400 hover:bg-purple-600 duration-300 text-white"
+              >
+                عرض
+              </Link>
+            </div>
+          ) : null}
           <hr className="my-3" />
           <div className="type font-medium text-gray-500">
             <p className="inline-block ml-3">حالة الشكوى :</p>

@@ -24,7 +24,6 @@ import { SlReload } from "react-icons/sl";
 import { TfiReload } from "react-icons/tfi";
 import { GiLoveLetter } from "react-icons/gi";
 import { BiCategoryAlt } from "react-icons/bi";
-import avatar from "/ava.png";
 export const navigations = [
   {
     link: "/",
@@ -221,7 +220,6 @@ export const reportStatusColors = {
 };
 
 export const errHandler = (err) => {
-  console.log(err);
   if (Object.values(err.response?.data?.data).length > 0) {
     return Object.values(err.response.data.data).join(",");
   }

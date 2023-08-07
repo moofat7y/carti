@@ -19,26 +19,9 @@ const Customers = () => {
           <BreadCrumbs links={[{ text: "العملاء", href: "/customers" }]} />
           {/* End Header */}
           {/* Group client */}
-          <div className="group-client mt-5">
-            <div className="title flex items-center gap-2 text-base font-bold text-gray-600">
-              <TbUsersGroup className="text-xl -mb-1" />
-              <h2 className="">مجموعات العملاء</h2>
-              <span className="text-xs text-gray-500">(4 مجموعات)</span>
-            </div>
-            {/* Num Client */}
-            {/* <CustomersFilter /> */}
-          </div>
 
           <div className="mt-4 flex justify-between items-center mb-5">
-            <Button
-              //   onClick={() => navigate("/products/add-product")}
-              className="px-2 md:px-6 flex items-center gap-2 cursor-pointer"
-              color="purple"
-            >
-              <AiOutlinePlus className="-mb-1" />
-              عميل جديد
-            </Button>
-            <div className="btn">
+            <div className="btn ms-auto">
               <div className="flex gap-1 text-sm font-medium text-gray-500">
                 <ProdFilter />
                 <Menu placement="bottom-end">

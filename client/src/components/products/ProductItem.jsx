@@ -52,7 +52,7 @@ export default function ProductItem({ product }) {
         </CardBody>
       </Link>
 
-      <CardFooter className="pt-0">
+      <CardFooter className="mt-auto">
         <Button
           ripple={false}
           fullWidth={true}

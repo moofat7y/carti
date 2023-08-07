@@ -18,7 +18,7 @@ const AuthLayout = () => {
       <div className="anim  md:order-2 flex items-center h-[25vh] justify-center md:h-screen px-3 lg:px-[60px] md:bg-gray-50">
         <Lottie className="w-full h-full" animationData={authAnim} />
       </div>
-      <div className="auth  md:order-1 flex items-center h-[75vh] justify-center md:h-screen px-3 md:px-[30px]">
+      <div className="auth  md:order-1 flex items-center min-h-[75vh] justify-center md:h-screen px-3 md:px-[30px]">
         <Outlet />
       </div>
     </div>

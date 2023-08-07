@@ -51,10 +51,6 @@ const InvoicesTable = () => {
               </div>
             </MenuHandler>
             <MenuList className="p-0">
-              <MenuItem className="flex items-center py-3 gap-2">
-                <GrFormAdd />
-                اضافة الى مجموعة
-              </MenuItem>
               <MenuItem
                 onClick={() => onSubmit()}
                 className="flex items-center py-3 gap-2"
@@ -72,9 +68,6 @@ const InvoicesTable = () => {
             <tr>
               <th scope="col" className="px-6 py-3">
                 رقم الفاتوره
-              </th>
-              <th scope="col" className="px-6 py-3">
-                عدد المنتجات
               </th>
               <th scope="col" className="px-6 py-3">
                 الضريبه

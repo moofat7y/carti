@@ -19,7 +19,7 @@ import {
 } from "../../app/features/product/productSlice";
 import { useLocation } from "react-router-dom";
 
-function AddProduct() {
+const AddProduct = () => {
   const {
     register,
     handleSubmit,
@@ -363,6 +363,6 @@ function AddProduct() {
       </form>
     </div>
   );
-}
+};
 
 export default AddProduct;

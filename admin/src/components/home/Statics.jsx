@@ -1,11 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 // ------Icons--------
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
-import { GiTakeMyMoney } from "react-icons/gi";
-import { BsBorderAll } from "react-icons/bs";
+import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
+import { BsBorderAll, BsBoxes } from "react-icons/bs";
 import { GoGoal } from "react-icons/go";
 
 // -------------------
@@ -21,25 +22,26 @@ import {
 
 const Statics = () => {
   const [open, setOpen] = React.useState(false);
+  const { isLoading, stat } = useSelector((state) => state.statistic);
   const handleOpen = () => setOpen(!open);
   // ---------------
 
+  console.log(stat);
   return (
     <div className="report w-full p-4">
       <div className="head flex justify-between items-center gap-2 border-b pb-3 text-gray-500 font-medium">
-        <h4 className="">ملخص شهر</h4>
-        <p className="text-sm">اغسطس 2023</p>
+        <h4 className="">الاحصائيات</h4>
       </div>
       {/* ------BOXES----- */}
       <div className="boxes flex flex-wrap gap-5 justify-between py-6">
         {/* BOX */}
         <div className="box flex gap-3 items-center mb-5">
           <div className="icon min-h-[50px] min-w-[50px] rounded-full flex items-center justify-center text-xl bg-purple-100 text-purple-800">
-            <FiUsers />
+            <BsBoxes />
           </div>
           <div className="info text-purple-800 flex flex-col  gap-2 text-sm font-medium">
-            <span className="count">--</span>
-            <p>الزيارات</p>
+            <span className="count">{stat?.product_count}</span>
+            <p>عدد المنتجات</p>
           </div>
         </div>
         {/* BOX */}
@@ -48,8 +50,8 @@ const Statics = () => {
             <GiTakeMyMoney />
           </div>
           <div className="info text-purple-800 flex flex-col  gap-2 text-sm font-medium">
-            <span className="count">7,514</span>
-            <p>المبيعات</p>
+            <span className="count">{stat?.products_total_price}</span>
+            <p>اجمالي سعر المنتجات</p>
           </div>
         </div>
         {/* BOX */}
@@ -58,27 +60,19 @@ const Statics = () => {
             <BsBorderAll />
           </div>
           <div className="info text-purple-800 flex flex-col  gap-2 text-sm font-medium">
-            <span className="count">46</span>
+            <span className="count">{stat?.orders_count}</span>
             <p>الطلبات</p>
           </div>
         </div>
         {/* BOX */}
         <div className="box flex gap-3 items-center mb-5">
-          <Button
-            onClick={handleOpen}
-            className="bg-transparent shadow-none hover:shadow-none flex gap-3 items-center mb-5 p-0 rounded-none m-0"
-          >
-            <div className="icon min-h-[50px] min-w-[50px] rounded-full flex items-center justify-center text-xl bg-transparent border-[3px] border-purple-500 text-purple-800">
-              <GoGoal className="text-purple-700" />
-            </div>
-            <div className="info text-purple-800 flex flex-col  gap-2 text-sm font-medium text-right">
-              <span className="count">650</span>
-              <p>
-                هدف الشهر
-                <MdKeyboardArrowLeft className="inline-block mr-2" />
-              </p>
-            </div>
-          </Button>
+          <div className="icon min-h-[50px] min-w-[50px] rounded-full flex items-center justify-center text-xl bg-transparent border-[3px] border-purple-500 text-purple-800">
+            <GiReceiveMoney className="text-purple-700" />
+          </div>
+          <div className="info text-purple-800 flex flex-col  gap-2 text-sm font-medium text-right">
+            <span className="count">{stat?.orders_total_price}</span>
+            <p>اجمالي الدخل</p>
+          </div>
           <Dialog open={open} handler={handleOpen} className="overflow-hidden">
             <DialogHeader className="bg-purple-100 text-xl">
               حدد الهدف الذي تطمح لتحقيقه في المبيعات
@@ -113,7 +107,7 @@ const Statics = () => {
       </div>
       {/* ------BTN----- */}
       <div className="btn text-purple-800 mx-auto w-fit">
-        <Link to="/reports">
+        <Link to="/invoices">
           المزيد من التقارير
           <MdKeyboardArrowLeft className="mr-2 inline-block" />
         </Link>

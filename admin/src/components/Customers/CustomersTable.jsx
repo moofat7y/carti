@@ -53,10 +53,6 @@ const CustomerTable = () => {
               </div>
             </MenuHandler>
             <MenuList className="p-0">
-              <MenuItem className="flex items-center py-3 gap-2">
-                <GrFormAdd />
-                اضافة الى مجموعة
-              </MenuItem>
               <MenuItem
                 onClick={() => onSubmit()}
                 className="flex items-center py-3 gap-2"
