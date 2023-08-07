@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import settingService from "./settingService";
+import { errHandler } from "../../../utils/helpers";
 
 const initialState = {
   isLoading: false,
@@ -10,11 +11,12 @@ const initialState = {
 
 export const getUserSetting = createAsyncThunk(
   "/setting/get",
-  async ({}, thunkApi) => {
+  async (thunkApi) => {
     try {
       return await settingService.getUserSetting();
     } catch (error) {
-      console.log(error);
+      error = errHandler(error);
+      return thunkApi.rejectWithValue(error);
     }
   }
 );

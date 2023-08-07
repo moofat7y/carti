@@ -35,6 +35,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const cart = state.cart;
+      console.log(action.payload);
       const alReadyAdded = cart.products.findIndex(
         (prod) =>
           prod.color === action.payload.color &&

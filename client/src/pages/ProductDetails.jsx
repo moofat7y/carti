@@ -42,10 +42,6 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = `Product: ${prodDetails?.name}`;
-  }, [id]);
-
-  useEffect(() => {
     const getProduct = async () => {
       try {
         setIsloading(true);
@@ -63,7 +59,6 @@ const ProductDetails = () => {
         setSelectedColor({ color: productData.color_size[0]?.color, index: 0 });
         setIsloading(false);
       } catch (error) {
-        console.log(error);
         setIsloading(false);
       }
     };
@@ -85,13 +80,11 @@ const ProductDetails = () => {
   };
 
   const onSubmit = () => {
-    console.log(selectedColor);
-    console.log(selectedSize);
-    if (prodDetails.color_size.length > 0 && !selectedColor) {
+    if (prodDetails.color_size?.length > 0 && !selectedColor) {
       return;
     }
     if (
-      prodDetails.color_size[selectedColor.index].size.length > 0 &&
+      prodDetails?.color_size[selectedColor.index]?.size?.length > 0 &&
       !selectedSize
     ) {
       return;
@@ -99,7 +92,7 @@ const ProductDetails = () => {
     dispatch(
       addToCart({
         product: prodDetails,
-        color: selectedColor?.color,
+        color: selectedColor?.color || null,
         size: selectedSize,
       })
     );

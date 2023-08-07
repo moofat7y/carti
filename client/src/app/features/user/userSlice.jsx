@@ -91,11 +91,13 @@ export const logOut = createAsyncThunk(
   async ({ navigate }, thunkAPI) => {
     try {
       const cartData = JSON.parse(window.localStorage.getItem("cart"));
-      const parsedData = cartData.products.map((prod) => {
-        return { ...prod, id: prod.product.id, product: undefined };
-      });
-      thunkAPI.dispatch(createCart({ data: parsedData }));
-      thunkAPI.dispatch(resetCart());
+      if (cartData) {
+        const parsedData = cartData.products.map((prod) => {
+          return { ...prod, id: prod.product.id, product: undefined };
+        });
+        thunkAPI.dispatch(createCart({ data: parsedData }));
+        thunkAPI.dispatch(resetCart());
+      }
       const res = await userService.logOut();
       window.localStorage.removeItem("user");
       window.localStorage.removeItem("token");
